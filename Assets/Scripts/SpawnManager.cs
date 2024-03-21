@@ -14,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     private PlayerController playerController;
 
     private bool powerupInScene;
+
+    public int numeroDeRondas = 0;
     
     private void Start()
     {
@@ -44,8 +46,9 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(enemyPrefab, GenerateRandomPosition(), Quaternion.identity);
             enemiesInScene++;
+            
         }
-
+        numeroDeRondas++;
         if (!powerupInScene && enemiesToSpawn > 1)
         {
             Instantiate(powerupPrefab,

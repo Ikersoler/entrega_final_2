@@ -51,5 +51,7 @@ public class Loops : MonoBehaviour
             Debug.Log($"whileIndex = {whileIndex}");
             whileIndex++;
         }
+
+
     }
 }

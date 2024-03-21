@@ -21,6 +21,19 @@ public class PlayerController : MonoBehaviour
     private bool isGameOver;
     private Vector3 initialPosition;
 
+
+    private gameManager gemu;
+    private UiManager uiMan;
+    
+
+
+
+
+
+
+
+
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -35,6 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         spawn = FindObjectOfType<SpawnManager>();
         HideAllPowerupIndicators();
+        
+        uiMan = FindObjectOfType<UiManager>();
     }
 
     private void Update()
@@ -53,6 +68,7 @@ public class PlayerController : MonoBehaviour
             {
                 //GAME OVER
                 isGameOver = true;
+                uiMan.GameOverPanel();
             }
             else
             {
@@ -62,6 +78,9 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(InvulnerabilityCountdown());
             }
         }
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -143,4 +162,14 @@ public class PlayerController : MonoBehaviour
     {
         return isGameOver;
     }
+
+
+
+
+
+   
+
+
+
+
 }
