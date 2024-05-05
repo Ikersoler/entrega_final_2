@@ -29,18 +29,38 @@ public class UiManager : MonoBehaviour
 
     private SpawnManager spawn;
 
+    [SerializeField] private Button rondas;
+
+    [SerializeField] private TextMeshProUGUI record;
+
+    [SerializeField] private GameObject panelRecord;
+
+    private dataPersistans data;
+
     private void Start()
     {
         gemu = FindObjectOfType<gameManager>();
         spawn = FindObjectOfType<SpawnManager>();
+        data = FindObjectOfType <dataPersistans>();
 
         //GameOverRestart.onClick.AddListener(() => { gemu.Restart(); });
 
         //Lvl1.onClick.AddListener(() => { gemu.StartGame(1); });
         //Lvl2.onClick.AddListener(() => { gemu.StartGame(2); });
 
+        if (GameOver != null && Pause != null )
+        {
+            hidePanels();
 
-        hidePanels();
+        }
+        if (panelRecord != null )
+        {
+            HideRecordPanel();
+        }
+
+       
+
+
 
     }
 
@@ -103,6 +123,7 @@ public class UiManager : MonoBehaviour
     }
     public void goToMainMenu()
     {
+        data.SaveJSON();
         SceneManager.LoadScene(0);
         
     }
@@ -110,5 +131,22 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
+        
+    }
+
+    public void HideRecordPanel()
+    {
+        panelRecord.SetActive(false);
+    }
+
+    public void ShowRecordPanel()
+    {
+        panelRecord.SetActive(true);
+    }
+
+    public void actualizarRecordPanel()
+    {
+        data.Load();
+        record.text = $"En la ultima partida {data.roundsText}";
     }
 }

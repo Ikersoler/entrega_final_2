@@ -1,0 +1,1 @@
+{"camRotation1":0.0,"camRotation2":0.5075207352638245,"camRotation3":0.0,"camRotation4":0.8616395592689514}

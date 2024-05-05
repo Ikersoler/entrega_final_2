@@ -16,13 +16,16 @@ public class SpawnManager : MonoBehaviour
     private bool powerupInScene;
 
     public int numeroDeRondas = 0;
+
+    private dataPersistans persistans;
     
     private void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
-
+        persistans = FindObjectOfType<dataPersistans>();
         powerupInScene = false;
         enemiesPerWave = 1;
+        persistans.LoadJSON();
         SpawnEnemyWave(enemiesPerWave);
     }
 
@@ -49,6 +52,9 @@ public class SpawnManager : MonoBehaviour
             
         }
         numeroDeRondas++;
+       
+        persistans.Save(numeroDeRondas);
+
         if (!powerupInScene && enemiesToSpawn > 1)
         {
             Instantiate(powerupPrefab,
